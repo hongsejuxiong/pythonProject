@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div style="border: 1px solid #ddd;width: 600px;position: absolute;">
+        <div id="title" style="background-color: black;height: 40px;color: white;">
+            标题
+        </div>
+        <div style="height: 300px;">
+            内容
+        </div>
+    </div>
+<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+<script>
+      $("#title").mouseover(function () {
+          $(this).css("cursor","move")
+      }).mousedown(function (event) {
+           var start_x=event.screenX;
+           var start_y=event.screenY;
+
+          var parent_left=$(this).parent().offset().left;
+          var parent_top=$(this).parent().offset().top;
+
+          $(this).on("mousemove",function (e) {
+               var new_x=e.screenX;
+               var new_y=e.screenY;
+
+
+              var new_parent_x=parent_left+(new_x-start_x);
+              var new_parent_y=parent_top+(new_y-start_y);
+
+
+              $(this).parent().css("left",new_parent_x+"px");
+              $(this).parent().css("top",new_parent_y+"px");
+          }).mouseup(function () {
+              $(this).off("mousemove")
+          })
+      })
+
+     
+</script>
+</body>
+</html>

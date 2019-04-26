@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="jquery-3.3.1.js"></script>
+
+</head>
+<body>
+
+<div id="AAA"> hello div</div>
+<p> hello p1 </p>
+<p class="BBB"> hellp p2</p>
+<div id="CCC"> hello div</div>
+
+<div class="DDD"> hello div DDD
+    <div> hello div
+     <p id="EEE"> hello p EEE</p>
+    </div>
+    <div id="GGG"> hello div GGG</div>
+    <p class="FFF"> hello p FFF</p>
+</div>
+
+
+<div class="JJJ">hello div JJJ
+
+    <div> hello div 111
+        <div> hello div 111_111</div>
+    </div>
+
+    <div> hello div 222 </div>
+    <p class="333">hello p 333</p>
+
+</div>
+
+
+<div class="HHH">hello div
+    <ul>
+        <li>1111</li>
+        <li>2222</li>
+        <li>3333</li>
+        <li>4444</li>
+    </ul>
+
+</div>
+
+
+<div class="KKK">hello div
+    <ul>
+        <li>AAAA</li>
+        <li>BBBB</li>
+        <li>CCCC</li>
+        <li>DDDD</li>
+    </ul>
+
+</div>
+
+
+<script>
+
+    // $("*").css("color","red");
+    // $("#AAA").css("color","green");
+    // $(".BBB").css("color","yellow");
+    // $("div").css("color","blue");
+    //     $("p").css("color","red");
+    //
+    //     $(".DDD div").css("color","green")
+
+    // $(".JJJ div").css("color","red")
+
+    // $(".HHH ul")
+
+    // $(".JJJ").css("color","red")
+
+    // $(".HHH li:first").css("color","red")
+    //     $(".HHH li:last").css("color","green")
+    //     $(".HHH li:even").css("color","blue")
+
+    $(".KKK li:eq(2)").css("color","red")
+    $(".HHH li:gt(1)").css("color","blue")
+
+
+</script>
+
+
+</body>
+</html>

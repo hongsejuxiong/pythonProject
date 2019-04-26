@@ -1,0 +1,68 @@
+{% load my_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{#<form action="/login/" method="post">#}
+{#    <input type="text" name="name">#}
+{#    <input type="text" name="pwd">#}
+{#    <input type="submit" value="submit">#}
+{#    {% csrf_token %}#}
+</form>
+
+{##}
+{#{% for foo in value %}#}
+    {#    从0开始的索引#}
+{#    <p>{{ forloop.counter0 }}: {{ foo }}</p>#}
+    {#    是否第一次循环#}
+{#    <p>{{ forloop.first }}</p>#}
+    {#    是否最后一次循环#}
+{#    <p>{{ forloop.last }}</p>#}
+{#    <p>{{ forloop.parentloop }}</p>#}
+{##}
+{#{% endfor %}#}
+{##}
+{#<hr>#}
+{##}
+{#    从1开始的索引#}
+{#{% for foo in value %}#}
+{#     <p>{{ forloop.counter }}: {{ foo }}</p>#}
+{#如果列表为空,则走以下内容#}
+{#{% empty %}#}
+{#<p>There are no athletes. Only computer programmers.</p>#}
+{##}
+{##}
+{#{% endfor %}#}
+{##}
+{#<hr>#}
+{##}
+{#    索引倒叙#}
+{#{% for foo in value %}#}
+{#     <p>{{ forloop.revcounter0 }}: {{ foo }}</p>#}
+{##}
+{#{% endfor %}#}
+
+{#{% addNum 5 %}#}
+
+
+{% simpleTagFunc 1 2 3 %}
+
+{{ value|filterFunc:3 }}
+
+
+{% if value|filterFunc:4 > 10 %}
+
+<p>结果大于10</p>
+{% elif value|filterFunc:2 < 10 %}
+<p>结果小于10</p>
+
+
+{% endif %}
+
+</body>
+</html>

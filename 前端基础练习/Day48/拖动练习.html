@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="border: 1px solid #dddddd; width: 600px; position: absolute">
+    <div id="title" style="background-color: black;color: #dddddd;height: 40px">标题</div>
+    <div style="height: 300px">内容</div>
+
+</div>
+
+<script type="text/javascript" src="jquery-3.3.1.js"></script>
+
+<script>
+    $("#title").mousemove(function () {
+
+        $(this).css("cursor","move")
+    }).mousedown(function (event) {
+
+        var start_x = event.screenX
+        var start_y = event.screenY
+
+        var parent_left = $(this).parent().offset().left;
+        var parent_rifht = $(this).parent().offset().right;
+
+        $("#title").
+
+    })
+
+</script>
+
+</body>
+</html>

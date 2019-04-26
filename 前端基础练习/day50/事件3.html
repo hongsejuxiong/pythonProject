@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script>-->
+<!--//       $(document).ready(function () {-->
+<!--//           $("p").css("color","red")-->
+<!--//       })-->
+
+        <!--//简写方式：-->
+<!--//        $(function () {-->
+<!--//            $("p").css("color","red")-->
+<!--//        })-->
+<!--//    </script>-->
+
+
+</head>
+<body>
+<p>hello world</p>
+
+
+<ul>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+</ul>
+
+<input type="button" value="+" onclick="add();">
+<script src="jquery-2.1.4.min.js"></script>
+<script>
+
+//    $("p").click(function () {
+//        alert(123)
+//    })
+
+
+//      $("p").bind("click",function () {
+//          alert(123)
+//      })
+
+//    $("ul li").click(function () {
+//            alert(456);
+//    })
+//    ---------等同于bind方法--------
+//    $("ul li").on("click",function () {
+//         alert(456);
+//    });
+
+    $("ul").on("click","li",function () {
+         alert(456);
+    });
+
+    function add() {
+        $("ul").append("<li>555</li>")
+    }
+
+    //[data]参数（了解）
+    function myHandler(e) {
+        alert(e.data.foo2);
+        }
+     $("p").on("click", {foo2: "bar"}, myHandler)
+
+
+</script>
+</body>
+</html>

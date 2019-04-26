@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div" style="display:none ;width: 200px;height: 200px;background-color: rebeccapurple"></div>
+
+<input id="In" type="button" value="fadeIn">
+<input id="out" type="button" value="fadeout">
+<input id="toggle" type="button" value="fadetoggle">
+<input id="fadeto" type="button" value="fadeto">
+
+<script src="jquery-2.1.4.min.js"></script>
+<script>
+    $("#In").click(function () {
+        $("div").fadeIn(2000);
+    })
+
+    $("#out").click(function () {
+        $("div").fadeOut(1000);
+    })
+
+     $("#toggle").click(function () {
+        $("div").fadeToggle(1000);
+    });
+
+    $("#fadeto").click(function () {
+        $("div").fadeTo(1000,0.9);
+    });
+</script>
+</body>
+</html>

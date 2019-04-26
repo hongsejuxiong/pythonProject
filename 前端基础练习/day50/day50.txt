@@ -1,0 +1,250 @@
+1、为什么要有HTML？
+    "Hello"
+    "<h1>Hello</h1>"
+    - 浏览器渲染时使用一套HTML规则，
+    - 学习规则
+2、服务器端写HTML时，
+   在任何语言的WEB框架中：html就做模版
+   
+    - .html
+    - .tpl   template
+    - .chmtl 
+3、发送请求和相应请求时
+    请求：
+        请求头
+        
+        
+        请求内容
+    响应：
+        ...
+4、HTML规则
+    - html/head/body/title/meta
+    - div/p/a/h/span/b/br/hr/em/ul/ol/li/img/table
+    - input/form/textarea/select
+    - style/script/link
+    
+    注意：
+        a.
+            <form action='url' method='GET' enctype='...'>
+                <input type='file' name='f' />
+                <input type='submit' />
+                
+            </form>
+        b. 
+            <form action='url' method='GET' enctype='...'>
+            男：<input type='radio' name='gender' value='1' />
+            女：<input type='radio' name='gender'  value='2' />
+            <input type='submit' />
+            </form>
+            
+            <form action='url' method='GET' enctype='...'>
+            男：<input type='checkbox' name='gender' value='1' />
+            女：<input type='checkbox' name='gender'  value='2' />
+            男女：<input type='checkbox' name='gender'  value='3' />
+            人妖：<input type='checkbox' name='gender'  value='5' />
+            <input type='submit' />
+            </form>
+            
+            gender. [1,2,5]
+
+        c. select 
+        
+
+
+5、CSS
+
+    选择器
+        #id   ｛｝
+        .class {}
+        div{}
+        
+        .c1 #id a{}
+            .c{
+                background-color:red;
+            }
+            .c1{
+                font-size: 56px;
+            }
+            .c2{
+                font-size: 18px;
+            }
+            <a class='c c1'></a>
+        .c1,#i1{
+            
+        }
+    举例：
+        
+        颜色，大小，高度、宽度、内外边距、边框、浮动、定位、字体、居中、超出、下划线、显示、分层、透明度
+        :hover,:after,:before,圆角
+        
+        重要：
+            float，  清除浮动：:after
+            a. 已知外层高度
+                内元素浮动时
+            b. 未知外层高度
+                - 原始：沉底位置 <div style='clear:both;'></div>
+                - 牛逼：
+                        .clearfix:after{
+                            content: '.';
+                            display: block;
+                            clear: both;
+                            visibility: hidden;
+                            height: 0;
+                        }
+                        
+                        <div class='afsd  clearfix'>
+                        
+                            <div class='float'></div>
+                            <div class='float'></div>
+                            <div class='float'></div>
+                            <div class='float'></div>
+                            <div class='float'></div>
+                            <div class='float'></div>
+                            <div class='float'></div>
+                            <div class='float'></div>
+                            <div class='float'></div>
+                            
+                        </div>
+            c. hover的应用
+                .c1{
+                    background-color:red;
+                }
+                .c1:hover{
+                    background-color:pink;
+                }
+                // 当鼠标放在c1上时，c1下的c2才生效
+                .c1:hover .c2{
+                    
+                }
+                
+6、JavaScript
+    a. 基本数据类型
+    b. var 
+    c. 对象
+    d. 作用域，作用域链
+        - 作用域链在函数被解释的过程中已经创建（函数做为作用域）
+        - 提前声明
+    
+        public void func(){
+        
+            if(1==1){
+                string name = "alex";
+            }
+            print(name)
+            
+        }
+        # 直接报错 ，name未定义
+        # Java/C# 代码块做为作用域
+        
+        
+        def func():
+            if 1==1:
+               name = "alex"
+            print(name)
+        # Python 函数做为作用域
+        
+    
+        function func(){
+            
+        }
+        ############### 1、JavaScript中以函数做为作用域 ##############
+        
+        <script>
+            xo = 'alex';
+            
+            function f1(){
+                
+                var xo = 'eric';
+                
+                function f2(){
+                
+                    console.log(xo);
+                }
+                
+                return f2
+            
+            }
+            
+            var xxxxx = f1()
+            xxxxx()
+            
+            // eirc
+        
+        </script>
+        
+        ############### 2、JavaScript函数在被调用之前（解释器解释过程中），作用域链已经存在 ##############
+        
+        <script>
+            xo = 'alex';
+            
+            function f1(){
+                
+                var xo = 'eric';
+                
+                function f2(){
+                
+                    console.log(xo);
+                }
+                
+                var xo = '666';
+                
+                return f2
+            
+            }
+            
+            var xxxxx = f1()
+            xxxxx()
+            
+            // 666
+        
+        </script>
+        
+        
+        function func(){
+            var ox;
+            console.log(ox);
+        }
+        
+        function func(){
+            console.log(ox); // undefined
+            var ox = 'alex';
+        }
+    
+        func()
+        ############### 3、JavaScript 声明提前 ##############
+        function func(){ 
+            console.log(ox);
+            var ox = '  '
+            var ox = '  '
+        }
+        
+        func()
+    
+        http://www.cnblogs.com/wupeiqi/p/5649402.html
+    
+    练习：作用域 + js知识
+        
+        
+7、jQuery
+    
+    - 找元素（直接，间接）
+    - 操作   （属性..）
+    
+
+
+                        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        

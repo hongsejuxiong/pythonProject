@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .left{
+            float: left;
+        }
+        .container{
+            background-color: red;
+        }
+
+        .container .item{
+            width: 180px;
+            height: 150px;
+            background-color: #303a40;
+            border: 1px solid red;
+        }
+
+        .clearfix:after{
+            content: '.';
+            display: block;
+            clear: both;
+            visibility: hidden;
+            height: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container clearfix">
+        <div class="item left"></div>
+        <div class="item left"></div>
+
+        <div class="item left"></div>
+        <div class="item left"></div>
+        <div class="item left"></div>
+        <div class="item left"></div>
+        <div class="item left"></div>
+        <div class="item left"></div>
+
+    </div>
+
+    <div>asdf</div>
+
+    <!--<div class="body clearfix">-->
+        <!--<div class="item left"></div>-->
+        <!--<div class="item left"></div>-->
+        <!--<div class="item left"></div>-->
+        <!--<div class="item left"></div>-->
+
+    <!--</div>-->
+
+    <!--<div class="test">ABC </div>-->
+</body>
+</html>

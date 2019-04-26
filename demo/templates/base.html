@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .page-header{
+            height: 50px;
+            background-color: red;
+        }
+
+        .page-body .menu{
+            height: 400px;
+            background-color: antiquewhite;
+            float: left;
+            width: 20%;
+        }
+
+        .page-body .content{
+            height: 400px;
+            background-color: yellow;
+            float: left;
+            width: 80%;
+        }
+
+        .page-footer {
+            height: 50px;
+            background-color: purple;
+            clear: both;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<div>
+    <div class="page-header"></div>
+    <div class="page-body">
+
+        <div class="menu">
+            <a href="/ordered/">订单</a>
+            <br>
+            <a href="/shopping_car/">购物车</a>
+        </div>
+
+        <div class="content">
+
+        {% block contend %}
+
+        {% endblock %}
+        </div>
+
+    </div>
+
+    <div class="page-footer">
+
+    </div>
+</div>
+
+
+</body>
+</html>

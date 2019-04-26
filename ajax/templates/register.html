@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post">
+
+    <p>用户名 <input type="text" name="userName" onblur="fun1(this)">
+        <span id="error"></span>
+    </p>
+
+    <p>
+        密码 <input type="password" name="password">
+    </p>
+
+    <input type="submit" value="submit">
+
+</form>
+
+
+
+
+    <script>
+
+        function fun1(self) {
+
+            var name = self.value
+            alert(name)
+            var xmlHttpRequest = new XMLHttpRequest()
+
+            xmlHttpRequest.onreadystatechange = function () {
+
+                if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+
+                    var returnValue = xmlHttpRequest.responseText
+                    if (returnValue == '1') {
+                        document.getElementById('error').innerHTML = '用户名已经注册过了'
+                    }
+
+                }
+
+            }
+            xmlHttpRequest.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+            xmlHttpRequest.open('POST','/ajax_register/', true)
+
+            xmlHttpRequest.send('userName='+name)
+        }
+
+    </script>
+
+</body>
+</html>

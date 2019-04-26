@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{#//字母大写, 'nba'-->'NBA'#}
+{#{{ value|upper }}#}
+{#//数字相加#}
+{#{{ value|add:2 }}#}
+{#//首字母大写#}
+{#{{ value|capfirst }}#}
+{#//删除指定字符串#}
+{#{{ value|cut:' ' }}#}
+{#//时间显示格式#}
+{#{{ value|date:'Y-m-d'}}#}
+{#//如果为空,默认显示#}
+{#{{ value|default:'null' }}#}
+{#//字符串大小,xxKB#}
+{#{{ value|filesizeformat }}#}
+{#//第一个字符#}
+{#{{ value|first }}#}
+{#//字符串长度#}
+{#{{ value|length }}#}
+{#//截取字符串,截取到倒数第二位#}
+{#{{ value|slice:'-1' }}#}
+{#//给变量中的引号加上斜线#}
+{#{{ value|addslashes }}#}
+{#//url转码#}
+{#{{ value|urlencode }}#}
+{##}
+{#//将字符串转为浏览器识别的HTML标签,两种方式都可以#}
+{#1.{{ value|safe }}#}
+{##}
+{#2. {% autoescape %}#}
+{#    {{ value }}#}
+{#   {% endautoescape %}#}
+
+
+
+
+
+{##}
+{#//数组根据索引取值#}
+{#{{ value.0 }}#}
+{##}
+{#//字典根据键取值#}
+{#{{ value.key1 }}#}
+{##}
+{#//对象点调用获取属性#}
+{#{{ value.year }}#}
+{#{{ value.name }}#}
+
+</body>
+</html>

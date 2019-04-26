@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button onclick="test()"> ajax提交</button>
+
+</body>
+
+<script src="/static/jquery-3.3.1.js"></script>
+
+<script>
+
+    function func1() {
+        test()
+    }
+
+
+    function test() {
+
+        {#$.get('ajax_get?a=列宁');#}
+
+        {#$.get('/ajax_get/?a=1');#}
+
+        {#$.get('ajax_get', {param: '列宁'})#}
+
+        {#$.post('ajax_get', {param1: '列宁', param2: '斯大林', param3: '赫鲁晓夫'}, function (data, stateText, xmlHttpRequest) {#}
+        {##}
+            {#console.log(data)#}
+            {#console.log('万岁')#}
+        {##}
+        {#    console.log(data, stateText, xmlHttpRequest)#}
+        {##}
+        {#{)#}
+
+
+        var person = '{\'age\': 18, \'name\': \'alex\', \'gender\': \'male\'}'
+
+        {#将json字符串转为对象#}
+        var myObject = JSON.parse(person)
+
+        console.log(myObject.age, myObject.name, myObject.gender)
+
+        {#将对象转为json字符串#}
+        myObject.stringify()
+
+        $.ajax({
+
+            url: 'ajax_get',
+            type: 'POST',
+            {#data: {'a':1, 'b':'2', 'c':3},#}
+            {#data: {a:1, b:'2', c:3, d:[{e:4}, {f:5}, {g:[{h:6},{i:7}]]},#}
+            data: {a:1, b:'2', c:3, d:[{e:4}, {f:5}]},
+
+            traditional:true,
+
+
+                        {#success: function (data) {#}
+                {#alert(data)#}
+                {#console.log(data)#}
+            {#    console.log(data)#}
+{#            {,#}
+{##}
+{#            error: function (error, stateText, msg) {#}
+{#                console.log(arguments)#}
+{#                console.log(error)#}
+{#                console.log(stateText)#}
+{#                console.log(msg)#}
+{#            {,#}
+
+{##}
+{#            statusCode: {#}
+{##}
+{#                '400': function (req, statusText, msg) {#}
+{#                    alert('苏维埃万岁')#}
+{#                },#}
+{#                #}
+{#            }#}
+
+
+            statusCode: {
+                '400': function () {
+
+                    {#console.log("列宁")#}
+                    console.log(arguments)
+
+                },
+
+
+                '404': function (req, statusText, msf) {
+                    console.log(arguments)
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        })
+
+
+
+    }
+
+</script>
+</html>

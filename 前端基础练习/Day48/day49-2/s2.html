@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .menu{
+            position: absolute;
+            left: 200px;
+            top:48px;
+            bottom:0;
+            width: 220px;
+            border: 1px solid red;
+        }
+        .menu a{
+            display: block;
+        }
+        .active{
+            background-color: #336699;
+            color: white;
+        }
+        .fafafa{
+           position: fixed;
+            top: 0;
+        }
+    </style>
+</head>
+<body style="margin: 0;">
+    <div style="height: 48px;background-color: #303a40"></div>
+    <div id="menu" class="menu">
+        <a b="1">菜单一</a>
+        <a b="2">菜单二</a>
+        <a b="3">菜单三</a>
+        <a b="44">菜单四</a>
+    </div>
+    <div id="content" style="position: absolute;left: 420px;right:200px;top:48px;bottom:0;border: 1px solid gray;">
+        <div id="ii1" a="1" style="height: 500px;background-color: rebeccapurple"></div>
+        <div id="ii2" a='2' style="height: 900px;background-color: #303a40"></div>
+        <div a='3' style="height: 1000px;background-color: #84a42b"></div>
+        <div a='44' style="height: 50px;background-color: #336699"></div>
+    </div>
+    <div onclick="GoTop();" style="cursor: pointer; position: fixed;right: 0;bottom: 0;width: 50px;height: 50px;background-color: #303a40;color: white;border: 1px solid red;">返回顶部</div>
+
+    <script src="jquery-2.1.4.min.js"></script>
+    <script>
+        function  GoTop() {
+            $(window).scrollTop(0);
+        }
+        
+        window.onscroll = function(){
+            var scrollTop = $('body').scrollTop();
+            if(scrollTop>48){
+                $('#menu').addClass('fafafa');
+            }else{
+                $('#menu').removeClass('fafafa');
+                $('#menu a').removeClass('active');
+            }
+            /*
+            //var title = 49;
+
+            //$('#ii1').offset().top;
+            var top = title - scrollTop;
+            if(top<0){
+                // 给左边的菜单一加上avtive
+            }
+            */
+            $('#content').children().each(function () {
+                var eleTop = $(this).offset().top;
+                var winTop = eleTop - scrollTop;
+                var winBottomTop = eleTop + $(this).height() - scrollTop;
+                // 滚动的高度
+                // 窗口的高度 $(window).height()
+                // 整个文档的高度 ~= body高度？
+                //     $(document).height()
+                var docHeight = $(document).height();
+                var winHeight = $(window).height();
+
+                if(docHeight-winHeight == scrollTop){
+                    // 给最后一个菜单加上active
+                    $('#menu a:last').addClass('active').siblings().removeClass('active');
+                }else{
+                    if(winTop<=0 && winBottomTop>0){
+                        // 当前内容对应的菜单应该被选中
+                        var a = $(this).attr('a');
+                        $('#menu a[b="'+a+'"]').addClass('active').siblings().removeClass('active');
+                        // 不再继续检测其他内容了
+                        return;
+                    }
+                }
+
+
+            })
+        }
+    </script>
+</body>
+</html>

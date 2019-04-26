@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p style="display: none">hello world</p>
+<input id="show" type="button" value="显示">
+<input id="hide" type="button" value="隐藏">
+<input id="toggle" type="button" value="toggle">
+<script src="jquery-2.1.4.min.js"></script>
+<script>
+
+    $("#show").click(function () {
+             $("p").show(2000,function () {
+                 alert(123)
+             });
+    });
+
+    $("#hide").click(function () {
+             $("p").hide(1000);
+    });
+
+
+     $("#toggle").click(function () {
+             $("p").toggle(1000);
+    });
+
+</script>    
+</body>
+</html>
