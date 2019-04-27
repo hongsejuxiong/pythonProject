@@ -1,0 +1,179 @@
+上周内容回顾：
+1、数据库操作
+    - 单表操作
+        - all
+        - filter   
+            models.tb.objects.filter(id=123)
+            
+            dic = {'id': 123, 'age__gt': 3}
+            models.tb.objects.filter(**dic)
+        - count
+        - order_by
+        ...
+    - 一对多
+        # id     name
+          1      河北
+          2      广东
+          3      山东
+        class Province(models.Model):
+            name = models.CharField(max_length=32,)
+            # nid = models.Intergar(unique=True) # 唯一
+        
+        # id     name      pro
+           1     东莞       2
+           2     深圳       2
+           3     惠州       2
+           4     河源       2
+           5     泰安       3
+           6     青岛       3
+           7     济南       3
+           8     张家口     1
+           9     邢台       1
+        class City(models.Model):
+            name = models.CharField(max_length=32)
+            pro = models.ForeignKey("Province", to_filed='id')
+        
+        1、 正向查找
+            result = models.City.objects.all()
+            result[0].pro.name
+            
+            models.City.objects.all().values('id','name','pro_id','pro__id','pro__name')
+            models.City.objects.all().values_list('id','name','pro_id','pro__id','pro__name')
+        
+        2、反向查找
+            result = models.Province.objects.values('id','name', 'city__name')
+        
+            result = models.Province.objects.all()
+            result[0]                  #  获取河北
+            result[0].city_set.all()   #  获取河北下的所有市 张家口 、邢台
+            
+            for pro in result:
+                a1 = pro.id
+                a2 = pro.name
+                a3 = pro.city_set.all()
+                print(a1,a2,a3)
+            =====> 多对多即使基于一对多来构造
+            
+    多对多
+        
+        自己创建第三张表：
+            class Book(models.Model):
+                name = ..
+                
+            class Author(models.Model):
+                name = ..
+                
+            class A_to_B(models):
+                bid = ForeignKey(Book)
+                aid = ForeignKey(Author)
+            ====> 所有操作：
+            
+        默认生成第三张表
+            只能间接对第三张表进行操作
+            
+            # 正向查找
+            # obj,人，金鑫
+            # obj = models.Author.objects.get(id=1)
+            #
+            # # 金鑫所有的著作全部获取到
+            # obj.m.all()
+
+            # 反向查找
+            # 金品买
+            # obj = models.Book.objects.get(id=1)
+            # # 金鑫，吴超
+            # obj.author_set.all()
+            # 10
+            # author_list = models.Author.objects.all()
+            # for author in author_list:
+            #     print(author.name,author.m.all())
+
+            # author_list = models.Author.objects.values('id','name','m', "m__name")
+            # for item in author_list:
+            #     print(item['id'],item['name'],'书籍ID:',item['m'],item['m__name'])
+
+            # 添加
+
+            # obj = models.Author.objects.get(id=1)
+            # 第三张表中增加一个对应关系
+            # 增加
+            # obj.m.add(5)
+            # obj.m.add(5,6)
+            # obj.m.add(*[4,5])
+            # 删除
+            # obj.m.remove(5)
+            # obj.m.remove(5,6)
+            # obj.m.remove(*[5,6])
+            # 清空
+            # obj.m.clear()
+            # 更新
+            # obj.m.set([1,2,3])
+
+            # 反向操作
+            # obj = models.Book.objects.get(id=1)
+            # obj.author_set.add(1)
+            # obj.author_set.add(1,2,3,4)
+            # ...
+            
+        
+        
+2、cookie，session
+
+3、分页
+
+4、
+    def index(request):
+        request.POST.get('k')
+        # checkbox--name相同,select
+        request.POST.getlist('k')
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            
+        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
