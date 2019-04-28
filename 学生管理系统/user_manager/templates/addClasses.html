@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+    <h1>添加班级列表</h1>
+
+    <form action="addClasses.html" method="post">
+
+        <input type="text" name="caption">
+        <input type="submit" value="提交数据">
+        {{ msg }}
+
+    </form>
+
+{% endblock %}

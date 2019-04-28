@@ -1,0 +1,84 @@
+
+    obj.m.add
+    obj.m.remove
+    obj.m.clear
+    obj.m.set
+
+
+    obj.tb_set.add
+    ...
+
+    
+    models.tb.objects.filter(name='root')
+    models.tb.objects.exclude(name='root')
+
+    
+    models.tb.objects.filter(id__in=[11,2,3])
+    models.tb.objects.exclude(id__in=[11,2,3])
+    
+    
+    jQuery对象和DOM对象
+        obj = document.getElementById('sel')
+        $(obj)
+        
+        $('#sel')
+        $('#sel')[0]
+        
+        select标签的Dom对象中有 selectedOptions
+        
+        appendTo
+    
+
+用户管理多对多操作
+    
+
+文件上传
+    - Form表单上传文件
+    - Ajax上传文件
+    - 基于form表单和iframe自己实现ajax请求
+    
+    a. 悄悄的上传
+        xmlHttpRequest
+            xml = new XMLHttpRequest();
+            xml.open('post', '/upload.html', true)
+            xml.send("k1=v1; k2=v2;")
+        jQuery 
+            $.ajax({
+                url:
+                data: {'k1': 'v1', 'k2': 'v2'}
+            })
+            
+        FormData对象
+            dict = new FormData()
+            dict.append('k1','v1');
+            dict.append('k2','v2');
+            dict.append('fafafa', 文件对象);
+            
+            xml.send(dict)
+            
+            $.ajax({
+                url:
+                data: dict,
+            })
+        
+        
+            
+    b. 让用户看到当前上传的图片
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

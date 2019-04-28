@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" onclick="jsonpRequest();" value="跨域请求" />
+
+    <script>
+        TAG = null;
+        function jsonpRequest() {
+            TAG = document.createElement('script');
+            TAG.src = "http://www.jxntv.cn/data/jmd-jxtv2.html?callback=list&_=1454376870403"; // list([11,22,33,44])
+            document.head.appendChild(TAG);
+        }
+        function list(arg) {
+            console.log(arg);
+            document.head.removeChild(TAG);
+        }
+    </script>
+</body>
+</html>

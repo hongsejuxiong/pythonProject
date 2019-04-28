@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+    <h1>编辑班级列表</h1>
+
+    <form action="editClasses.html" method="post">
+
+        <input class="hide" type="text" name="nid" value="{{ obj.id }}">
+        <input type="text" name="caption" value="{{ obj.caption }}">
+        <input type="submit" value="提交数据">
+        {{ msg }}
+
+    </form>
+
+{% endblock %}

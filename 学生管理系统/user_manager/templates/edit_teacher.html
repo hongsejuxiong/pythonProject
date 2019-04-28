@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>编辑老师</h1>
+
+    <form action="/edit_teacher-{{ obj.id }}.html" method="post">
+        <div>
+            老师姓名:
+            <input type="text" name="name" value="{{ obj.name }}">
+        </div>
+        <br>
+        <div>
+            班级:
+            <select id="sel" name="classes" multiple="multiple" style="width: 100px;height: 200px">
+
+                {% for cls in cls_list %}
+                    {% if cls.id in id_list %}
+                        <option value="{{ cls.id }}" selected="selected">{{ cls.caption }}</option>
+                    {% else %}
+                        <option value="{{ cls.id }}">{{ cls.caption }}</option>
+                    {% endif %}
+                {% endfor %}
+
+            </select>
+
+        </div>
+        <br>
+        <div>未交班级
+            <select name="selected" id="none" multiple="multiple" style="width: 100px;height: 200px">
+                {% for cls in class_not_list %}
+                    <option id="{{ cls.id }}" value="{{ cls.caption }}">{{ cls.caption }}</option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+
+        <div>
+            <p>
+                <button id="cls_remove" value="删除" type="button">删除</button>
+            </p>
+            <p>
+                <button id="cls_add" value="添加" type="button">添加</button>
+            </p>
+
+        </div>
+
+        <div>
+            <input type="submit" value="提交" id="cls_submit">
+        </div>
+
+
+    </form>
+
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $(function () {
+            $('#menu_teacher').addClass('active');
+            bindClsRemoveEvent();
+            bindClsAddEvent();
+        })
+
+        function bindClsRemoveEvent() {
+
+            $('#cls_remove').on('click', function () {
+
+                console.log('苏维埃');
+
+
+                var options = $('#sel')[0].selectedOptions;
+
+                /*
+                  while (options.length > 0) {
+                    $(options[0]).appendTo($('#none'));
+                }
+
+                * */
+
+
+                /*
+                options.each(item, function (index, value) {
+
+                    {#$(this).appendTo('#none');#}
+
+                    {#print($(this));#}
+
+                    $(value).appendTo('#none');
+
+                })
+
+                */
+
+                /*
+
+                $.each(options, function (index, value) {
+                    $(value).appendTo('#none');
+                })
+
+                */
+
+
+                $.each(options, function (index, value) {
+                    $(value).appendTo('#none')
+                })
+
+
+            })
+
+        }
+
+        function bindClsAddEvent() {
+
+
+            $('#cls_add').on('click', function () {
+
+                var options_items = $('#none')[0].selectedOptions;
+                $.each(options_items, function (index,value) {
+                    $(value).appendTo('#sel');
+                })
+            })
+        }
+
+        function bindClsCommitEvent() {
+
+            $('#cls_submit').on('click', function () {
+                $('#sel').children().each(function () {
+                    $(this).prop('selected', true);
+                })
+            })
+        }
+
+
+    </script>
+{% endblock %}
+

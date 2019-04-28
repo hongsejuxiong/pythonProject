@@ -1,0 +1,81 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form style="border-width: 10px;border-color: red" action="/edit_student.html" method="post">
+
+        <input id="edit_id" class="hide" type="text" name="nid" value="{{ obj.id }}">
+        <input id="edit_name" type="text" name="name" value="{{ obj.name }}">
+        <input id="edit_email" type="text" name="email" value="{{ obj.email }}">
+        <select id="edit_classes" name="classes">
+            {% for cls in cls_list %}
+
+    {#            <option value=""></option>#}
+                <option>{{ cls.caption }}</option>
+
+            {% endfor %}
+
+        </select>
+    <input id="edit_ajaxBtn" type="button" value="ajax提交">
+    <input type="submit" value="submit提交">
+
+
+    </form>
+
+
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script>
+        $(function () {
+            $('#menu_student').addClass('active')
+            bindEditStudentEvent()
+        })
+
+        function bindEditStudentEvent() {
+
+            $('#edit_ajaxBtn').click(function () {
+
+            //})
+
+           //$('tbody').on('click', '#edit_ajaxBtn', function () {
+
+                console.log('苏维埃')
+
+                nid = $('#edit_id').val()
+                edit_name = $('#edit_name').val()
+                email = $('#edit_email').val()
+                classes = $('#edit_classes').attr('paramId')
+
+                console.log(nid)
+                console.log(edit_name)
+                console.log(email)
+                console.log(classes)
+
+
+                $.ajax({
+                    url: 'edit_student.html',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {'nid':nid ,'name':edit_name, 'email':email, 'classes':classes},
+                    success: function (data) {
+
+                        {#if data.resultData == true {#}
+                        {#    redirect('')#}
+                        {#}#}
+
+                    }
+
+                })
+            })
+
+        }
+
+    </script>
+
+{% endblock %}
+

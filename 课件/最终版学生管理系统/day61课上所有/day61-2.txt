@@ -1,0 +1,15 @@
+1、filter，exclude
+2、DOM和jQuery
+3、DOM对于Select标签  selectedOptions
+4、
+    XMLHttpRequest
+        FormData
+    jQuery
+        FormData
+        
+    iframe+Form表单 （伪）
+        ..
+        
+5、JSONP原理       
+   作业：自己写一个JSONP
+        

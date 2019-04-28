@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block content %}
+    <h1>编辑老师</h1>
+    <form action="/edit_teacher-{{ obj.id }}.html" method="POST">
+        <input style="display: none" type="text" id="nid" value="{{ obj.id }}" />
+        <p>
+            老师姓名：<input name="name" type="text" value="{{ obj.name }}" />
+        </p>
+        <p>
+            已管理班级
+            <select id="sel" name="cls" multiple>
+                {% for row in obj_cls_list %}
+                    <option value="{{ row.0 }}">{{ row.1 }}</option>
+                {% endfor %}
+            </select>
+            未管理班级：
+            <select id="none" multiple>
+                {% for row in cls_list %}
+                    {% if row.id not in id_list %}
+                        <option value="{{ row.id }}">{{ row.caption }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
+        </p>
+        <input type="submit" value="提交" />
+    </form>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $(function () {
+            $('#menu_teacher').addClass('active');
+        })
+    </script>
+{% endblock %}

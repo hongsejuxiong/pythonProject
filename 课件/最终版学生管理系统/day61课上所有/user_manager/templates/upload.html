@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+
+    <script>
+        function li(arg) {
+            console.log(arg);
+        }
+    </script>
+</head>
+<body>
+    <h1>测试Iframe功能</h1>
+    <input type="text" id="url" />
+    <input type="button" value="点我" onclick="iframeChange();" />
+    <iframe  id="ifr" src=""></iframe>
+    <hr/>
+    <h1>基于iframe实现form提交</h1>
+    <form action="/upload.html" method="post" target="iframe_1" enctype="multipart/form-data">
+        <iframe style="display: none"  id="iframe_1" name="iframe_1" src="" onload="loadIframe();"></iframe>
+        <input type="text" name="user" />
+        <input type="file" name="fafafa" />
+        <input type="submit" />
+    </form>
+    <h1>图片列表</h1>
+    <div class="container" id="imgs">
+        {% for img in img_list %}
+            <img src="/{{ img.path }}">
+        {% endfor %}
+    </div>    
+
+    <input type="file" id="img" />
+    <input type="button" value="提交XML" onclick="UploadXML()" />
+    <input type="button" value="提交JQ" onclick="Uploadjq()" />
+    <script src="/static/jquery-2.1.4.min.js"></script>
+    <script>
+        function UploadXML() {
+            var dic = new FormData();
+            dic.append('user', 'v1');
+            dic.append('fafafa', document.getElementById('img').files[0]);
+
+            var xml = new XMLHttpRequest();
+            xml.open('post', '/upload.html', true);
+            xml.onreadystatechange = function () {
+                if(xml.readyState == 4){
+                    var obj = JSON.parse(xml.responseText);
+                    if(obj.status){
+                        var img = document.createElement('img');
+                        img.src = "/" + obj.path;
+                        document.getElementById("imgs").appendChild(img);
+                    }
+                }
+            };
+            xml.send(dic);
+        }
+        function Uploadjq() {
+            var dic = new FormData();
+            dic.append('user', 'v1');
+            dic.append('fafafa', document.getElementById('img').files[0]);
+
+            $.ajax({
+                url: '/upload.html',
+                type: 'POST',
+                data: dic,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,  // tell jQuery not to set contentType
+                dataType: 'JSON',
+                success: function (arg) {
+                    if (arg.status){
+                        var img = document.createElement('img');
+                        img.src = "/" + arg.path;
+                        $('#imgs').append(img);
+                    }
+                }
+            })
+
+        }
+        
+        function  iframeChange() {
+            var url = $('#url').val();
+            $('#ifr').attr('src', url);
+        }
+
+        function loadIframe() {
+            console.log(1);
+            // 获取iframe内部的内容
+            var str_json = $('#iframe_1').contents().find('body').text();
+            console.log(str_json);
+            /*
+
+            var obj = JSON.parse(str_json);
+            if (obj.status){
+                var img = document.createElement('img');
+                img.src = "/" + obj.path;
+                $('#imgs').append(img);
+            }
+            */
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .menu .item{
+            display: block;
+            padding: 5px 10px;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        {#.menu .item:hover{#}
+        {#    color: white;#}
+        {#    background-color: black;#}
+        {#}#}
+
+        .menu .item.active{
+            color: white;
+            background-color: black;
+        }
+
+        .hide{
+            display: none;
+        }
+
+        .modal{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 400px;
+            margin-top: -250px;
+            margin-left: -200px;
+            z-index: 100;
+            background-color: white;
+        }
+
+        .remove{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 200px;
+            margin-top: -200px;
+            margin-left: -100px;
+            z-index: 100;
+            background-color: red;
+        }
+
+
+        .shade{
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: black;
+            opacity: 0.5;
+            z-index: 99;
+        }
+
+
+    </style>
+
+    {% block css %} {% endblock %}
+
+</head>
+<body>
+
+
+<div style="height: 48px;background-color: purple;color: orange;">
+    <div style="float: right;padding-right: 10px;padding-top: 10px">用户名:{{ username }} | <a href="/logout.html">注销</a> </div>
+
+</div>
+
+
+<div>
+    <div class="menu" style="position: absolute;top: 48px; left: 0px; bottom: 0px;width: 200px;background-color: #eeeeee">
+        <a id="menu_classes" class="item" href="/classes.html">班级管理</a>
+        <a id="menu_student" class="item" href="/student.html">学生管理</a>
+        <a id="menu_teacher" class="item" href="/teacher.html">老师管理</a>
+    </div>
+
+</div>
+
+
+<div style="position: absolute;top: 48px;left: 200px;bottom: 0px;right: 0px;overflow: auto;">
+
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+<script src="/static/jquery-3.3.1.js"></script>
+
+    {% block js %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<h1>form表单和ajax提交</h1>
+
+<div>
+    <form action="/upload.html" method="post" enctype="multipart/form-data" target="suweiai">
+        <iframe src="" frameborder="1" name="suweiai" id="liening" onload="iframeSubmit();"></iframe>
+        <input type="text" name="name">
+        <input type="file" name="image">
+        <input type="submit" value="上传">
+    </form>
+
+</div>
+
+<h2>xml提交和ajax提交</h2>
+
+<div>
+    <input type="text" name="name">
+    <input type="file" name="image" id="file_id">
+    <input type="submit" value="xml提交" onclick="xmlSubmit()">
+    <input type="submit" value="ajax提交" onclick="ajaxSubmit()">
+
+</div>
+
+<h3>图片列表</h3>
+
+<div id="add_img_id">
+    {% for img in img_list %}
+        <img src="/{{ img.file_path }}" style="width: 200px;height: 200px;">
+    {% endfor %}
+</div>
+
+    <script src="/static/jquery-3.3.1.js"></script>
+    <script>
+        function xmlSubmit() {
+
+            var img_file = document.getElementById('file_id').files[0];
+
+            var formData = new FormData();
+            formData.append('name','苏维埃');
+            {#formData.append(img_file);#}
+            formData.append('image',img_file);
+
+            var xmlRequest = new XMLHttpRequest();
+            xmlRequest.onreadystatechange = function () {
+                if (xmlRequest.readyState == 4 && xmlRequest.status == 200) {
+                    var obj = JSON.parse(xmlRequest.responseText);
+                    if (obj.status) {
+                        console.log('苏拉');
+                        console.log(obj);
+                        var append_img = document.createElement('img');
+                        append_img.src = "/" + obj.file_path;
+                        {#$('#img_id').append(append_img);#}
+                        document.getElementById('add_img_id').appendChild(append_img);
+
+                    }
+
+                }
+            }
+            xmlRequest.open('post','/upload.html', true);
+            xmlRequest.send(formData);
+        }
+
+        function ajaxSubmit () {
+
+            var file_img = document.getElementById('img_id').files[0];
+            var formData = new FormData();
+            formData.append('name','列宁');
+            formData.append('image',formData);
+            $.ajax({
+                url: '/upload.html',
+                dataType: 'JSON',
+                data: formData,
+                type: 'POST',
+                processData: false,
+                contentTpye: false,
+                success: function (responseData) {
+
+                    if (responseData.status) {
+                        var add_img = document.createElement('img');
+                        add_img.src = '/' + responseData.file_path;
+                        $('#add_img_id').append(add_img);
+
+                    }
+
+                }
+
+            })
+
+        }
+
+        function iframeSubmit() {
+            //console.log('苏维埃');
+
+            var returnStr = $('#suweiai').contents().find('body').text();
+            var json_obj = JSON.parse(returnStr);
+
+            if (json_obj.status) {
+                var append_img = document.createElement('img');
+                append_img.src = '/' + json_obj.file_path;
+                $('#liening').append(append_img);
+            }
+
+
+
+        }
+
+    </script>
+
+</body>
+</html>

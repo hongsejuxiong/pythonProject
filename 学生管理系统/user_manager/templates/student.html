@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1>学生管理</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>姓名</th>
+                <th>班级</th>
+                <th>邮箱</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for student in student_list %}
+
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.cls.caption }}</td>
+                    <td>
+                        <a href="edit_student.html?nid={{ student.id }}">编辑</a>
+                        <a>删除</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(function () {
+            {#alert('学生')#}
+            console.log('学生')
+            $('#menu_student').addClass('active')
+        })
+    </script>
+{% endblock %}

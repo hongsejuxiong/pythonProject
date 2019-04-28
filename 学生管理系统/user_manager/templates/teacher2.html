@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block css %}
+
+    <style>
+        .tag {
+            display: inline-block;
+            background-color: lightpink;
+            border: 1px solid red;
+            cursor: pointer;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <h1>老师管理</h1>
+
+
+    <table>
+       <thead>
+            <tr>
+                <th>标题</th>
+                <th>老师姓名</th>
+                <th>老师班级</th>
+            </tr>
+       </thead>
+        <tbody>
+            {% for teacher in teacher_list %}
+                <tr>
+                    <td>{{ teacher.id }}</td>
+                    <td>{{ teacher.name }}</td>
+                    <td>
+                       {% for cls in teacher.cls.all %}
+                        <span class="tag" nid="{{ cls.id }}">{{ cls.caption }}</span>
+                       {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(function () {
+            {#alert('老师')#}
+            $('#menu_teacher').addClass('active')
+        })
+    </script>
+{% endblock %}
