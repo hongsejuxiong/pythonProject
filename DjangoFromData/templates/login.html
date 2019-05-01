@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/login.html" method="post">
+    <p>
+{#        <input type="text" name="user" placeholder="用户名">#}
+        {{ obj.user }}
+        <span>{{ obj.errors.user.0 }}</span>
+    </p>
+    <p>
+{#        <input type="text" name="email" placeholder="邮箱">#}
+        {{ obj.email }}
+        <span>{{ obj.errors.email.0 }}</span>
+    </p>
+    <p>
+        <input type="text" name="pwd" placeholder="密码">
+    </p>   <p>
+        <input type="submit" value="提交">
+    </p>
+
+</form>
+
+</body>
+</html>

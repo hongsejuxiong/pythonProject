@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+       .redStyle {
+           color: red;
+           background-color: black;
+       }
+    </style>
+
+</head>
+<body>
+
+<form action="/ajax_login.html" method="post" id="form_id">
+    <p>
+        <input type="text" name="user" placeholder="用户名">
+    </p>
+
+    <p>
+        <input type="text" name="email" placeholder="邮箱">
+    </p>
+
+    <p>
+        <input type="text" name="pwd" placeholder="密码">
+    </p>
+        <input type="submit" value="提交" onclick="ajax_submit();">
+    </p>
+
+</form>
+
+<script src="/static/jquery-2.1.4.min.js"></script>
+
+<script>
+
+    function ajax_submit() {
+
+        $.ajax({
+            url: '/ajax_login.html',
+            data: $('#form_id').serialize(),
+            type: 'POST',
+            success: function (arg) {
+
+                console.log(arg);
+                obj = JSON.parse(arg);
+
+                if (!obj.status) {
+
+                    errors = JSON.parse(obj.error);
+
+                    $.each(errors, function (k,v) {
+                        var span = document.createElement('span');
+                        span.className = 'redStyle';
+                        span.innerHTML = v[0].message;
+                        $("input[name='" + k + "']").after(span);
+
+                    })
+
+                }else {
+                    location.href = '/index.html';
+                }
+            }
+
+        })
+    }
+
+</script>
+
+</body>
+</html>
