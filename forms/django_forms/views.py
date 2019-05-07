@@ -6,6 +6,24 @@ from django_forms import forms
 
 def detail(request):
 
-    obj = forms.DetailForm()
+    if request.method == 'GET':
+        obj = forms.DetailForm()
 
-    return render(request, 'detail.html', {'obj':obj})
+        return render(request, 'detail.html', {'obj': obj})
+    else:
+
+        obj = forms.DetailForm(request.POST)
+
+        if obj.is_valid():
+            print(obj.clean())
+
+
+
+
+def db(request):
+    
+    obj = forms.DBForm()
+    return render(request, 'db.html', {'obj': obj})
+
+
+

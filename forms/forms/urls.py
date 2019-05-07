@@ -20,4 +20,5 @@ from django_forms import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('detail.html', views.detail),
+    path('db.html', views.db),
 ]

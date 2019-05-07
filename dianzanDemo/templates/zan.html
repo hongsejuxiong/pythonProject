@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        .item{
+            border: 1px green solid;
+            height: 100px;
+        }
+
+        .zan{
+            font-size: 20px;
+            color: black;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            line-height: 50px;
+            text-align: center;
+            position: relative;
+
+        }
+
+        .zan span {
+            position: absolute;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="item">
+    <div class="zan">赞</div>
+</div>
+<div class="item">
+    <div class="zan">赞</div>
+</div>
+<div class="item">
+    <div class="zan">赞</div>
+</div>
+<div class="item">
+    <div class="zan">赞</div>
+</div>
+
+
+<script src="/static/jquery-1.12.4.js"></script>
+
+<script>
+    $(function () {
+
+        $('.zan').click(function () {
+
+            console.log('苏维埃');
+
+            var font_size = 15;
+            var top = 5;
+            var left = 5;
+            var opay = 1;
+
+            var tag = document.createElement('span');
+            tag.style.fontSize = font_size + 'px';
+            tag.style.color = "green";
+            tag.innerHTML = "+1";
+            tag.style.left = left + 'px';
+            tag.style.top = top + 'px';
+            tag.style.opacity = 1;
+            $(this).append(tag);
+
+            {#var obj = setInterval(function () {#}
+            {##}
+            {#    font_size += 1;#}
+            {#    top -= 1;#}
+            {#    left += 3;#}
+            {#    opacity -= 0.2;#}
+            {##}
+            {#    if (opacity < 0) {#}
+            {#       clearInterval(obj);#}
+            {#       $(tag).remove();#}
+            {#    }#}
+            {##}
+            {#}, 100)#}
+
+        })
+    })
+</script>
+
+
+
+</body>
+</html>
