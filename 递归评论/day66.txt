@@ -1,0 +1,100 @@
+1、python manage.py migrate --fake
+
+2、小评论
+    a, LOW版本
+    
+    b. 
+        Python中字典、列表是引用类型
+        
+    c. 字典
+        dic = {
+            'asdfasdf': [,asdfasdf]
+            'asdfasdf': [,asdfasdf]
+            'asdfasdf': [,asdfasdf]
+        
+        }
+        dic.get('asdfasdf')
+    ====> 互相令
+    
+====================================================
+1、
+    python manage.py migrate --fake
+    
+2、
+     - 递归获取数据
+     - 胡祥林式获取数据
+     
+     - render + simple_tag
+     # 前端直接after指定位置
+3、
+    $.ajax({
+        dataType: "JSON"
+    })
+    
+    # 前端进行递归实现
+    
+4、点赞和评论
+    循环时，自定义新闻id
+    
+    class News(model.Model):
+    
+        favor = models.ManayToMany('UserInfo')
+        
+    # 
+    
+      news_id = ..
+      user_id = ...
+      
+    obj = News.objects.get(id=id)
+    b = obj.favor.filter(uid=request.session['uid']).count()
+    obj.remove(request.session['uid'])
+    
+     obj.add(request.session['uid'])
+     
+5、上传
+    
+    
+    <form id='f1'>
+        <iframe ></iframe>
+        .....
+        <input type='file' onchange="uploadImage();" /> 
+    
+    </form>
+    
+    function uploadImage(){
+        document.getElementById('f1').submit()
+    
+    }
+
+
+
+
+
+
+
+
+      
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

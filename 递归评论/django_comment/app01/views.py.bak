@@ -1,0 +1,140 @@
+from django.shortcuts import render,HttpResponse
+from app01 import models
+
+class Node:
+    @staticmethod
+    def digui(ret, row):
+        # ret: {'id': 4, 'content': '你最牛逼', 'user': '小比虎', 'parent_id': 1, 'children': []},{'id': 5, 'content': '老师最你比', 'user': '李欢', 'parent_id': 1},]
+        # row {'id': 6, 'content': '郭永昌是...', 'user': '郭永昌', 'parent_id': 4},
+        for rt in ret:
+            if rt['id'] == row['parent_id']:
+                row['children'] = []
+                rt['children'].append(row)
+                return
+            else:
+                Node.digui(rt['children'],row)
+
+    @staticmethod
+    def create_tree(comment_list):
+        ret = []
+        """
+        {'user': '搞基建', 'parent_id': None, 'id': 1, 'children': [{'id': 4, 'content': '你最牛逼', 'user': '小比虎', 'parent_id': 1, 'children': []},{'id': 5, 'content': '老师最你比', 'user': '李欢', 'parent_id': 1},], 'content': 'Python最牛逼'}
+        {'user': '搞基建', 'parent_id': None, 'id': 2, 'children': [], 'content': 'Java最牛逼'}
+        {'user': '搞基建', 'parent_id': None, 'id': 3, 'children': [], 'content': 'PHP最牛逼'}
+        """
+        for row in comment_list:
+            # row {'id': 6, 'content': '郭永昌是...', 'user': '郭永昌', 'parent_id': 4},
+            if not row['parent_id']: # None
+                row['children'] = []
+                ret.append(row)
+            else:
+                Node.digui(ret,row)
+        return ret
+
+
+
+
+def comment(request):
+    news_id = 1
+
+    # comment_list = models.Comment.objects.filter(news_id=news_id)
+    # for row in comment_list:
+    #     print(row.id,row.content,row.user_info.name,row.parent_id)
+    comment_list = [
+        {'id': 1, 'content': 'Python最牛逼', 'user': '搞基建', 'parent_id': None},
+        {'id': 2, 'content': 'Java最牛逼', 'user': '搞基建', 'parent_id': None},
+        {'id': 3, 'content': 'PHP最牛逼', 'user': '搞基建', 'parent_id': None},
+        {'id': 4, 'content': '你最牛逼', 'user': '小比虎', 'parent_id': 1},
+        {'id': 5, 'content': '老师最你比', 'user': '李欢', 'parent_id': 1},
+        {'id': 6, 'content': '郭永昌是...', 'user': '郭永昌', 'parent_id': 4},
+        {'id': 7, 'content': '哈哈我是流氓...', 'user': '崔月圆', 'parent_id': 2},
+        {'id': 8, 'content': '我女朋友好漂亮...', 'user': '崔月圆', 'parent_id': 3},
+        {'id': 9, 'content': '见到你女友，交定你朋友...', 'user': '搞基建', 'parent_id': 8},
+        {'id': 10, 'content': '见到你女友，交定你朋友...', 'user': '鼻环', 'parent_id': None},
+    ]
+    """
+    comment_tree = Node.create_tree(comment_list)
+    for i in comment_tree:
+        print(i)
+    """
+    # hash_comment_list = {}
+    # for m in range(len(comment_list)):
+    #     comment_list[m].update({'children':[]})
+    #     hash_comment_list[comment_list[m]['id']] = comment_list[m]
+    # # print(hash_comment_list)
+    # ret = []
+    # for i in range(len(comment_list)):
+    #     node = comment_list[i]
+    #     pnode = hash_comment_list.get(node['parent_id'])
+    #     if pnode:
+    #         pnode['children'].append(node)
+    #     else:
+    #         ret.append(node)
+    # print(ret)
+
+    # hash_comment_list = {}
+    # for item in comment_list:
+    #     item.update({'children': []})
+    #     hash_comment_list[item['id']] = item
+    # # print(hash_comment_list)
+    # ret = []
+    # for row in comment_list:
+    #     node = row
+    #     pnode = hash_comment_list.get(node['parent_id'])
+    #     if pnode:
+    #         pnode['children'].append(node)
+    #     else:
+    #         ret.append(node)
+    #     print(comment_list)
+    # print(ret)
+
+
+    # for i in comment_list:
+    #     i.update({'children': []})
+    #
+    # for i in comment_list:
+    #     if i['id'] == 5:
+    #         i['children'].append(i)
+    #
+    # for i in comment_list:
+    #     print(i)
+
+
+
+    """
+    [
+        {
+            'id': 1,
+            'content': 'Python最牛逼',
+            'user': '搞基建',
+            'parent_id': None,
+            'children': [
+                {'id': 4, 'content': '你最牛逼', 'user': '小比虎', 'parent_id': 1, 'children': [
+                    {'id': 6, 'content': '郭永昌是...', 'user': '郭永昌', 'parent_id': 4, 'children': []},
+                ]},
+                {'id': 5, 'content': '老师最你比', 'user': '李欢', 'parent_id': 1, 'children': []},
+            ]
+        },
+        {
+            'id': 2,
+            'content': 'Python最牛逼',
+            'user': '搞基建',
+            'parent_id': None,
+            'children': []
+        },
+        {
+            'id': 3,
+            'content': 'Python最牛逼',
+            'user': '搞基建',
+            'parent_id': None,
+            'children': []
+        },
+    ]
+    """
+
+
+
+
+
+
+    return HttpResponse('Comment')

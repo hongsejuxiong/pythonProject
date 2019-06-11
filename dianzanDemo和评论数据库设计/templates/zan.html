@@ -54,7 +54,6 @@
 
         $('.zan').click(function () {
 
-            console.log('苏维埃');
 
             var font_size = 15;
             var top = 5;
@@ -70,19 +69,20 @@
             tag.style.opacity = 1;
             $(this).append(tag);
 
-            {#var obj = setInterval(function () {#}
-            {##}
-            {#    font_size += 1;#}
-            {#    top -= 1;#}
-            {#    left += 3;#}
-            {#    opacity -= 0.2;#}
-            {##}
-            {#    if (opacity < 0) {#}
-            {#       clearInterval(obj);#}
-            {#       $(tag).remove();#}
-            {#    }#}
-            {##}
-            {#}, 100)#}
+
+            var obj = setInterval(function () {
+
+                font_size += 1;
+                top -= 1;
+                left += 3;
+                opay -= 0.2;
+
+                if (opay < 0) {
+                    clearInterval(obj);
+                    $(tag).remove();
+                }
+
+            }, 100)
 
         })
     })

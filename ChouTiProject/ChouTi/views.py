@@ -12,3 +12,8 @@ def test(request):
     print(request.environ.get('HTTP_USER_AGENT'))
 
     return render(request,'test.html')
+
+
+def md(request):
+
+    return render(request,'md.html')

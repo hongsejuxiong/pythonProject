@@ -20,4 +20,6 @@ from ChouTi import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test.html', views.test),
+    path('md.html', views.md),
+
 ]

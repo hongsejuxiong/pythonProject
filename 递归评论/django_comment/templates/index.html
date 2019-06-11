@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .comment-box{
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="item">
+        <a news_id="19" class="com">评论</a>
+        <div class="comment-list">
+            <div class="comment-box">
+                <span>Py最牛</span>
+                <div></div>
+            </div>
+            <div class="comment-box">
+                <span>搞基建</span>
+                <div class="comment-box">
+                    <span>小胡比</span>
+                </div>
+                <div class="comment-box">
+                    <span>玩得患</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <a news_id="18" class="com">评论</a>
+    </div>
+    <div class="item">
+        <a news_id="17" class="com">评论</a>
+    </div>
+
+
+    <script src="/static/jquery-2.1.4.min.js"></script>
+    <script>
+        $(function () {
+            bindCommentEvent();
+        });
+        function bindCommentEvent() {
+           $('.com').click(function () {
+               var news_id = $(this).attr('news_id');
+               var _this = $(this);
+
+               $.ajax({
+                   url: '/comment/',
+                   type: 'GET',
+                   data: {news_id: news_id},
+                   dataType: "html",
+                   success:function (arg) {
+                       //create_tree(arg, _this);
+                       console.log(arg);
+                       _this.after(arg);
+                   }
+               })
+
+           })
+        }
+
+        function diGui(children_list){
+                var html = "";
+                $.each(children_list,function (ck,cv) {
+                       var b = '<div class="comment-box"><span>';
+                       b+= cv.content + "</span>";
+                       b += diGui(cv.children);
+                       b += "</div>";
+                       html += b;
+                 });
+                return html;
+            }
+
+
+            function create_tree(data,$this) {
+                 var html = '<div class="comment-list">';
+                 $.each(data,function (k,v) {
+                    var a = '<div class="comment-box"><span>';
+                     a+= v.content + "</span>";
+                     // 创建自评论
+                     a += diGui(v.children);
+                     a+= "</div>";
+                     html += a;
+                 });
+
+                 html += "</div>";
+                $this.after(html);
+        }
+
+
+    </script>
+
+</body>
+</html>
